@@ -1,0 +1,6 @@
+[workspace]
+resolver = "2"
+members = [ "tokio-uring-openssl"]
+
+[workspace.dependencies]
+openssl = "0.10"

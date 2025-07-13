@@ -1,0 +1,11 @@
+[package]
+name = "tokio-uring-openssl"
+version = "0.1.0"
+edition = "2024"
+publish = false
+
+[dependencies]
+openssl.workspace = true
+
+[target.'cfg(unix)'.dependencies]
+tokio-uring = { version = "0.5.0" }
