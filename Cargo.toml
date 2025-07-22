@@ -8,3 +8,5 @@ tonic = "0.13"
 prost = "0.13"
 tokio-uring = { version = "0.5.0" }
 tonic-build = "0.13"
+tokio = { version = "1.40", features = ["full"] }
+tokio-util = { version = "0.7", default-features = false}
