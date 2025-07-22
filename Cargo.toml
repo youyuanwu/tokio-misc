@@ -1,6 +1,10 @@
 [workspace]
 resolver = "2"
-members = [ "tokio-uring-openssl"]
+members = [ "tokio-uring-openssl", "tonic-uring", "tonic-uring-tests"]
 
 [workspace.dependencies]
 openssl = "0.10"
+tonic = "0.13"
+prost = "0.13"
+tokio-uring = { version = "0.5.0" }
+tonic-build = "0.13"

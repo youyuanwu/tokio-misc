@@ -1,0 +1,9 @@
+[package]
+name = "tonic-uring"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+tonic.workspace = true
+prost.workspace = true
+tokio-uring.workspace = true
