@@ -10,14 +10,8 @@ prost.workspace = true
 tokio-uring.workspace = true
 tokio-util.workspace = true
 tokio.workspace = true
-openssl = { workspace = true, features = ["vendored"] , default-features = false}
-openssl-sys = { workspace = true, features = ["vendored"] , default-features = false}
-foreign-types-shared.workspace = true
+openssl.workspace = true
 tokio-uring-openssl.workspace = true
-ktls.workspace = true
-libc.workspace = true
-futures.workspace = true
 
 [build-dependencies]
 tonic-build.workspace = true
-openssl-src = { version = "*", features = ["ktls", "legacy"], default-features = false }

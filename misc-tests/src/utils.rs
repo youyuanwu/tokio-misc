@@ -121,30 +121,3 @@ pub fn create_openssl_connector(cert: &openssl::x509::X509) -> SslConnector {
         .unwrap();
     connector.build()
 }
-
-pub fn create_openssl_connector_with_ktls(cert: &openssl::x509::X509) -> SslConnector {
-    let mut connector =
-        openssl::ssl::SslConnector::builder(openssl::ssl::SslMethod::tls()).unwrap();
-
-    use ktls::kbio::ffi::SSL_OP_ENABLE_KTLS;
-    unsafe {
-        openssl_sys::SSL_CTX_set_options(connector.as_ptr(), SSL_OP_ENABLE_KTLS);
-        // Use TLS 1.2 with KTLS-compatible cipher suite
-        let cipher_list = std::ffi::CString::new("ECDHE-RSA-AES128-GCM-SHA256").unwrap();
-        openssl_sys::SSL_CTX_set_cipher_list(connector.as_ptr(), cipher_list.as_ptr());
-    }
-
-    connector.cert_store_mut().add_cert(cert.clone()).unwrap();
-    connector.add_client_ca(cert).unwrap();
-    connector.set_verify_callback(openssl::ssl::SslVerifyMode::NONE, |ok, ctx| {
-        if !ok {
-            let e = ctx.error();
-            println!("verify failed : {e}");
-        }
-        ok
-    });
-    connector
-        .set_min_proto_version(Some(SslVersion::TLS1_2))
-        .unwrap();
-    connector.build()
-}

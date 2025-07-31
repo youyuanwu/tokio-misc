@@ -1,5 +1,0 @@
-{
-  "name": "openssl",
-  "version-string": "3.5.1",
-  "description": "Custom OpenSSL with kTLS enabled"
-}

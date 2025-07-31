@@ -3,10 +3,6 @@ use tonic::{Request, Response, Status};
 use crate::helloworld::{HelloReply, HelloRequest};
 
 #[cfg(test)]
-pub mod async_ktls;
-#[cfg(test)]
-pub mod ktls;
-#[cfg(test)]
 pub mod openssl;
 #[cfg(test)]
 pub mod utils;
