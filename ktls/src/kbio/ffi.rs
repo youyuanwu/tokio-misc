@@ -471,9 +471,7 @@ mod tests {
             let ssl = match openssl::ssl::Ssl::new(&ctx) {
                 Ok(ssl) => ssl,
                 Err(e) => {
-                    println!(
-                        "Failed to create SSL object: {e}, skipping KTLS HTTPS test"
-                    );
+                    println!("Failed to create SSL object: {e}, skipping KTLS HTTPS test");
                     return;
                 }
             };

@@ -16,6 +16,7 @@ foreign-types-shared.workspace = true
 tokio-uring-openssl.workspace = true
 ktls.workspace = true
 libc.workspace = true
+futures.workspace = true
 
 [build-dependencies]
 tonic-build.workspace = true

@@ -19,6 +19,9 @@ jobs:
 
     - uses: taiki-e/install-action@cargo-llvm-cov
 
+    - name: Install protoc
+      uses: taiki-e/install-action@protoc
+
     - name: Run cargo check
       run: cargo check
 

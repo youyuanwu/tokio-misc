@@ -11,9 +11,9 @@ pub struct BIOSocketStream {
 }
 impl BIOSocketStream {
     /// Create a new BIOSocketStream from a raw file descriptor and SSL object.
-    /// 
+    ///
     /// # Safety
-    /// 
+    ///
     /// The caller must ensure that:
     /// - `fd` is a valid file descriptor
     /// - The file descriptor remains valid for the lifetime of this object
@@ -30,6 +30,7 @@ impl BIOSocketStream {
         }
     }
 
+    /// Synchronous connect method (kept for backward compatibility)
     pub fn connect(&self) -> Result<(), openssl::error::ErrorStack> {
         let handshake_result = unsafe { openssl_sys::SSL_connect(self.ssl.as_ptr()) };
         if handshake_result <= 0 {
@@ -101,5 +102,16 @@ impl std::io::Write for BIOSocketStream {
 
     fn flush(&mut self) -> std::io::Result<()> {
         Ok(())
+    }
+}
+
+impl Drop for BIOSocketStream {
+    fn drop(&mut self) {
+        // The BIO is automatically freed when SSL_free is called on the SSL object,
+        // so we don't need to manually free the BIO here. The SSL object will be
+        // dropped automatically via its Drop implementation.
+        //
+        // Note: We used SSL_set_bio(ssl, bio, bio) which means both read and write
+        // BIOs point to the same BIO object, and SSL takes ownership of it.
     }
 }

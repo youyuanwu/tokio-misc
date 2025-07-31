@@ -14,6 +14,7 @@ openssl = { version = "0.10", default-features = false }
 openssl-sys = { version = "0.9", default-features = false }
 openssl-src = { version = "*", features = ["ktls", "legacy"], default-features = false }
 libc = "0.2"
+futures = "0.3"
 
 # crate in this workspace
 tokio-uring-openssl = { path = "tokio-uring-openssl" }
