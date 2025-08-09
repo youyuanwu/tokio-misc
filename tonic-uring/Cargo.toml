@@ -7,3 +7,7 @@ edition = "2024"
 tonic.workspace = true
 prost.workspace = true
 tokio-uring.workspace = true
+tower.workspace = true
+hyper-util.workspace = true
+hyper.workspace = true
+tokio-uring-util.workspace = true

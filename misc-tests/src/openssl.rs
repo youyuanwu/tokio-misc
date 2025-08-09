@@ -1,7 +1,7 @@
 mod tests {
     use std::io::{Read, Write};
 
-    use tokio_uring_openssl::io::UTcpStream;
+    use tokio_uring_util::UTcpStream;
 
     use crate::utils::{HELLO, create_openssl_acceptor_builder, create_openssl_connector};
 

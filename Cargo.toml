@@ -1,16 +1,23 @@
 [workspace]
 resolver = "2"
-members = ["tokio-uring-openssl", "tonic-uring", "misc-tests"]
+members = ["tokio-uring-openssl", "tonic-uring", "misc-tests", "tokio-uring-util"]
 
 [workspace.dependencies]
 tonic = "0.13"
 prost = "0.13"
 tokio-uring = { version = "0.5.0" }
 tonic-build = "0.13"
-tokio = { version = "1.40", features = ["full"] }
+tokio = { version = "1.40", features = [], default-features = false}
 tokio-util = { version = "0.7", default-features = false }
 openssl = { version = "0.10", default-features = false }
 openssl-sys = { version = "0.9", default-features = false }
+futures-util = { version = "0.3", features = ["io"] }
+pin-project-lite = "0.2"
+hyper = "1"
+http-body-util = "0.1"
+tower = "0.5"
+hyper-util = "0.1"
 
 # crate in this workspace
 tokio-uring-openssl = { path = "tokio-uring-openssl" }
+tokio-uring-util = { path = "tokio-uring-util" }

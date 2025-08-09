@@ -9,3 +9,4 @@ openssl.workspace = true
 
 [target.'cfg(unix)'.dependencies]
 tokio-uring.workspace = true
+tokio-uring-util.workspace = true

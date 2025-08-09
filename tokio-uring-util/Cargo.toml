@@ -1,0 +1,17 @@
+[package]
+name = "tokio-uring-util"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+futures-util.workspace = true
+pin-project-lite.workspace = true
+hyper.workspace = true
+
+
+[target.'cfg(unix)'.dependencies]
+tokio-uring.workspace = true
+
+[dev-dependencies]
+http-body-util.workspace = true
+hyper = {workspace = true, features = ["client", "server", "http1", "http2"]}

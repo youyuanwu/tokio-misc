@@ -1,6 +1,8 @@
 use std::io::Read;
 
-use crate::io::{AsyncRead, AsyncWrite, SyncStream};
+use tokio_uring_util::{AsyncRead, AsyncWrite};
+
+use crate::io::SyncStream;
 
 #[derive(Debug)]
 pub enum HandshakeError {

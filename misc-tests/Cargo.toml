@@ -12,6 +12,10 @@ tokio-util.workspace = true
 tokio.workspace = true
 openssl.workspace = true
 tokio-uring-openssl.workspace = true
+tokio-uring-util.workspace = true
+tonic-uring = { path = "../tonic-uring" }
+hyper.workspace = true
+http-body-util.workspace = true
 
 [build-dependencies]
 tonic-build.workspace = true

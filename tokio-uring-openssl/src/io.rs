@@ -1,32 +1,4 @@
-use tokio_uring::{
-    BufResult,
-    buf::{BoundedBuf, BoundedBufMut},
-    net::TcpStream,
-};
-
-#[allow(async_fn_in_trait)]
-pub trait AsyncRead {
-    async fn read<B: BoundedBufMut>(&mut self, buf: B) -> BufResult<usize, B>;
-}
-
-#[allow(async_fn_in_trait)]
-pub trait AsyncWrite {
-    async fn write_all<T: BoundedBuf>(&self, buf: T) -> BufResult<(), T>;
-}
-
-pub struct UTcpStream(pub TcpStream);
-
-impl AsyncRead for UTcpStream {
-    async fn read<B: BoundedBufMut>(&mut self, buf: B) -> BufResult<usize, B> {
-        self.0.read(buf).await
-    }
-}
-
-impl AsyncWrite for UTcpStream {
-    async fn write_all<T: BoundedBuf>(&self, buf: T) -> BufResult<(), T> {
-        self.0.write_all(buf).await
-    }
-}
+use tokio_uring_util::{AsyncRead, AsyncWrite};
 
 // turn async stream in to sync
 pub struct SyncStream {
