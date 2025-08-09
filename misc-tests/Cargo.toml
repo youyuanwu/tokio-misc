@@ -6,6 +6,7 @@ publish = false
 
 [dependencies]
 tonic.workspace = true
+tonic-prost.workspace = true
 prost.workspace = true
 tokio-uring.workspace = true
 tokio-util.workspace = true
@@ -18,4 +19,4 @@ hyper.workspace = true
 http-body-util.workspace = true
 
 [build-dependencies]
-tonic-build.workspace = true
+tonic-prost-build.workspace = true

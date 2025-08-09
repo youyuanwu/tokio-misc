@@ -3,11 +3,12 @@ resolver = "2"
 members = ["tokio-uring-openssl", "tonic-uring", "misc-tests", "tokio-uring-util"]
 
 [workspace.dependencies]
-tonic = "0.13"
-prost = "0.13"
+tonic = "0.14"
+prost = "0.14"
 tokio-uring = { version = "0.5.0" }
-tonic-build = "0.13"
-tokio = { version = "1.40", features = [], default-features = false}
+tonic-prost-build = "0.14"
+tonic-prost = "0.14"
+tokio = { version = "1", features = [], default-features = false}
 tokio-util = { version = "0.7", default-features = false }
 openssl = { version = "0.10", default-features = false }
 openssl-sys = { version = "0.9", default-features = false }
