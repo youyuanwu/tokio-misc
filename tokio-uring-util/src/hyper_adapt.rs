@@ -184,10 +184,10 @@ mod http_tests {
         // (instead of buffering and printing at the end).
         while let Some(next) = res.frame().await {
             let frame = next.unwrap();
-            if let Some(chunk) = frame.data_ref() {
-                if !chunk.is_empty() {
-                    print!("{}", String::from_utf8_lossy(chunk));
-                }
+            if let Some(chunk) = frame.data_ref()
+                && !chunk.is_empty()
+            {
+                print!("{}", String::from_utf8_lossy(chunk));
             }
         }
 

@@ -222,14 +222,14 @@ impl<S: AsyncRead + AsyncWrite + 'static> FutAsyncRead for AsyncStream<S> {
             unsafe { &mut *(this.inner.get_unchecked_mut() as *mut _) };
 
         // Check if we have an ongoing read future
-        if let Some(mut f) = this.read_future.take() {
-            if f.as_mut().poll(cx).is_pending() {
-                // Future is still pending, put it back and return
-                this.read_future.replace(f);
-                return Poll::Pending;
-            }
-            // Future completed, continue to try sync read
+        if let Some(mut f) = this.read_future.take()
+            && f.as_mut().poll(cx).is_pending()
+        {
+            // Future is still pending, put it back and return
+            this.read_future.replace(f);
+            return Poll::Pending;
         }
+        // Future completed, continue to try sync read
 
         // Try the sync read operation
         match std::io::Read::read(inner, buf) {
@@ -257,14 +257,14 @@ impl<S: AsyncRead + AsyncWrite + 'static> FutAsyncWrite for AsyncStream<S> {
             unsafe { &mut *(this.inner.get_unchecked_mut() as *mut _) };
 
         // Check if we have an ongoing write future
-        if let Some(mut f) = this.write_future.take() {
-            if f.as_mut().poll(cx).is_pending() {
-                // Future is still pending, put it back and return
-                this.write_future.replace(f);
-                return Poll::Pending;
-            }
-            // Future completed, continue to try sync write
+        if let Some(mut f) = this.write_future.take()
+            && f.as_mut().poll(cx).is_pending()
+        {
+            // Future is still pending, put it back and return
+            this.write_future.replace(f);
+            return Poll::Pending;
         }
+        // Future completed, continue to try sync write
 
         // Try the sync write operation
         match std::io::Write::write(inner, buf) {

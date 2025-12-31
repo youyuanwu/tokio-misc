@@ -9,12 +9,12 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - name: Install rust stable
       uses: dtolnay/rust-toolchain@stable
       with:
-        toolchain: 1.88.0
+        toolchain: 1.92.0
         components: rustfmt, clippy
 
     - uses: taiki-e/install-action@cargo-llvm-cov
